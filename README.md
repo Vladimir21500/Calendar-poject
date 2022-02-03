@@ -1,4 +1,4 @@
-# Layout Project 1
+# Calendar Project with React
 
 ## [Site link](https://adoring-swartz-6a7a96.netlify.app/)
 

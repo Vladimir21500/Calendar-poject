@@ -3,28 +3,25 @@ import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 import { createEvent, deleteEvent, fetchEventInfo } from './gateway/gateWay';
 
-import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
+import { getWeekStartDate, generateWeekRange } from './utils/dateUtils.js';
 
 import './common.scss';
+
+const MILLS_IN_MIN = 1000 * 60;
 
 const App = () => {
   const [events, setEvents] = useState([]);
   const [weekStartDate, setWeekStartDate] = useState(new Date());
-  const [weekDates, setWeekDates] = useState(
-    generateWeekRange(getWeekStartDate(weekStartDate))
-  );
+  const [weekDates, setWeekDates] = useState(generateWeekRange(getWeekStartDate(weekStartDate)));
   const [isShowModal, setIsShowModal] = useState(false);
-  const [dateInfoForDefault, setdateInfoForDefault] = useState([
-    new Date().getHours(),
-    new Date(),
-  ]);
+  const [dateInfoForDefault, setdateInfoForDefault] = useState([new Date().getHours(), new Date()]);
 
   useEffect(() => {
     setWeekDates(generateWeekRange(getWeekStartDate(weekStartDate)));
   }, [weekStartDate]);
 
   const updateEvents = () => {
-    fetchEventInfo().then((events) => {
+    fetchEventInfo().then(events => {
       setEvents(events);
     });
   };
@@ -52,10 +49,10 @@ const App = () => {
     setWeekStartDate(new Date(minusSevenDay));
   };
 
-  const onDeleteEvent = (id) => {
-    const dateFrom = events.find((event) => event.id === id).dateFrom;
+  const onDeleteEvent = id => {
+    const dateFrom = events.find(event => event.id === id).dateFrom;
     if (
-      Math.abs(dateFrom / 60000 - new Date().getTime() / 60000) < 15 &&
+      Math.abs(dateFrom / MILLS_IN_MIN - new Date().getTime() / MILLS_IN_MIN) < 15 &&
       dateFrom > new Date().getTime()
     ) {
       alert('cannot be deleted, the event will start soon');
@@ -71,7 +68,7 @@ const App = () => {
     setIsShowModal(false);
   };
 
-  const onSubmitModal = (eventInfo) => {
+  const onSubmitModal = eventInfo => {
     let isContradicEvents = false;
 
     events.forEach(({ dateFrom, dateTo }) => {
