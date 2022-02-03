@@ -29,10 +29,6 @@ const Modal = ({ dateInfoForDefault, onHideModal, onSubmitModal }) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [messageError, setMessageError] = useState('enter title please');
 
-  useEffect(() => {
-    validate();
-  }, [eventData]);
-
   const validateTitle = value => {
     if (value) {
       setMessageError('');
@@ -108,6 +104,8 @@ const Modal = ({ dateInfoForDefault, onHideModal, onSubmitModal }) => {
     if (name === 'dateTo') {
       return validateTime(name, value);
     }
+
+    return true;
   };
 
   const validate = () => {
@@ -127,7 +125,13 @@ const Modal = ({ dateInfoForDefault, onHideModal, onSubmitModal }) => {
     }
 
     setIsDisabled(false);
+
+    return true;
   };
+
+  useEffect(() => {
+    validate();
+  }, [eventData]);
 
   const onChangeValueModal = event => {
     const { name, value } = event.target;

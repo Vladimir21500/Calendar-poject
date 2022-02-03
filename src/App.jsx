@@ -50,7 +50,7 @@ const App = () => {
   };
 
   const onDeleteEvent = id => {
-    const dateFrom = events.find(event => event.id === id).dateFrom;
+    const { dateFrom } = events.find(event => event.id === id);
     if (
       Math.abs(dateFrom / MILLS_IN_MIN - new Date().getTime() / MILLS_IN_MIN) < 15 &&
       dateFrom > new Date().getTime()

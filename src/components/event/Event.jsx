@@ -9,23 +9,18 @@ const Event = ({ height, marginTop, id, title, time, onDeleteEvent }) => {
     marginTop,
   };
 
-  const clickHandler = (event) => {
+  const clickHandler = event => {
     event.stopPropagation();
 
     onDeleteEvent(event.target.dataset.id);
   };
 
   return (
-    <div
-      data-id={id}
-      style={eventStyle}
-      className='event'
-      onClick={clickHandler}
-    >
-      <div data-id={id} className='event__title'>
+    <div data-id={id} style={eventStyle} className="event" onClick={clickHandler}>
+      <div data-id={id} className="event__title">
         {title}
       </div>
-      <div data-id={id} className='event__time'>
+      <div data-id={id} className="event__time">
         {time}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Event from '../event/Event';
-import { formatMins } from '../../../src/utils/dateUtils.js';
+import { formatMins } from '../../utils/dateUtils.js';
 
 import './hour.scss';
 
@@ -9,7 +9,7 @@ const MIN_IN_MILLISECONDS = 1000 * 60;
 
 const Hour = ({ dataHour, dataDate, hourEvents, onDeleteEvent, onCreateEvent }) => {
   const clickHandler = event => {
-    const time = event.target.dataset.time;
+    const { time } = event.target.dataset;
     const date = new Date(+event.target.dataset.date);
     onCreateEvent(time, date);
   };

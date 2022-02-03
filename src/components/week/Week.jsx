@@ -6,12 +6,12 @@ import './week.scss';
 
 const Week = ({ weekDates, events, onDeleteEvent, onCreateEvent }) => {
   return (
-    <div className='calendar__week'>
-      {weekDates.map((day) => {
+    <div className="calendar__week">
+      {weekDates.map(day => {
         const dayEvents = events.filter(
-          (event) =>
+          event =>
             new Date(event.dateFrom).getMonth() === day.getMonth() &&
-            new Date(event.dateTo).getDate() === day.getDate()
+            new Date(event.dateTo).getDate() === day.getDate(),
         );
 
         return (
