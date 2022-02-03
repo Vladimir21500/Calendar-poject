@@ -12,7 +12,8 @@ const Day = ({ dateDay, dayEvents, onDeleteEvent, onCreateEvent }) => {
     .fill()
     .map((val, index) => index);
 
-  const isToday = dateDay.getDate() === new Date().getDate();
+  const isToday =
+    dateDay.getDate() === new Date().getDate() && dateDay.getMonth() === new Date().getMonth();
 
   return (
     <>
