@@ -1,6 +1,6 @@
 # Calendar Project with React
 
-## [Site link](https://adoring-swartz-6a7a96.netlify.app/)
+## [Site link](https://calendar-project21500.netlify.app/)
 
 ## Available Scripts
 
